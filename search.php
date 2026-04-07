@@ -148,7 +148,7 @@
                         while ($data = $result->fetch_assoc()) {
                            echo ' <tr>
                               <td>' . $data['manufacturer_name'] . '</td>
-                              <td>' . $data['device_type'] . '</td>
+                              <td>' . $data['device_type_name'] . '</td>
                               <td>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</td>
                            </tr>';    
                         }
