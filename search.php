@@ -92,26 +92,27 @@
                    </div>
                         <button type="submit" class="btn btn-primary" name="search" value="Search">Search</button>
                </form>
+               <?php
+                if (isset($_POST['search']))
+                {
+                    $device=$_POST['device'];
+                    $manufacturer=$_POST['manufacturer'];
+                    $serialNumber=trim($_POST['serialnumber']);
+
+                    validateSerialNumber($prefix, $body, $serialNumber);
+
+                    $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
+
+                    echo '<table class="table table-bordered">
+                        <tr>
+                           <td>Manufacturer</td>
+                           <td>Device Type</td>
+                           <td>Serial Number</td>
+                        </tr>
+                     </table>';
+                }
+               ?>
       </section>
 </body>
 </html>
-<?php
-    if (isset($_POST['search']))
-    {
-        $device=$_POST['device'];
-        $manufacturer=$_POST['manufacturer'];
-        $serialNumber=trim($_POST['serialnumber']);
 
-        validateSerialNumber($prefix, $body, $serialNumber);
-
-        $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
-         echo '<table class="table table-bordered">
-            <tr>
-               <td>Manufacturer</td>
-               <td>Device Type</td>
-               <td>Serial Number</td>
-            </tr>
-         </table>';
-
-    }
-?>
