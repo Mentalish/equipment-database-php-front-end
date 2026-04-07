@@ -38,7 +38,6 @@
      </section>
  <!-- HOME -->
      <section id="home">
-          </div>
      </section>
      <!-- FEATURE -->
      <section id="feature">
@@ -55,7 +54,7 @@
                         while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                            $devices[$data['device_id']]=$data['serial_number_body'];
                         }
-                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `status_id`='1'";
+                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers.status_id`='1'";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
