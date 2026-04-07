@@ -70,7 +70,7 @@
     {
        $deviceTypeName=$_POST['deviceType'];
        
-       if(!preg_grep('/[a-z]/', $deviceTypeName)) 
+       if(!preg_match('/[a-z]/', $deviceTypeName)) 
        {
           redirect("add.php?msg=DeviceTypeNameInvalid");
        }
