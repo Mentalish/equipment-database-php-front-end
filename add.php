@@ -102,12 +102,15 @@
         $device=$_POST['device'];
         $manufacturer=$_POST['manufacturer'];
         $serialNumber=trim($_POST['serialnumber']);
-        $sql="Select `auto_id` from `serials` where `serial_number`='$serialNumber'";
+
+        validateSerialNumber($prefix, $body, $serialNumber);
+
+        $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
         $rst=$dblink->query($sql) or
              die("<p>Something went wrong with $sql<br>".$dblink->error);
         if ($rst->num_rows<=0)//sn not previously found
         {
-            $sql="Insert into `serials` (`device_id`,`manufacturer_id`,`serial_number`) values ('$device','$manufacturer','$serialNumber')";
+            $sql="Insert into `serials` (`device_type_id`,`manufacturer_id`, `serial_numer_prefix` `serial_number_body`) values ('$device','$manufacturer','$prefix','$body')";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
             redirect("index.php?msg=EquipmentAdded");
