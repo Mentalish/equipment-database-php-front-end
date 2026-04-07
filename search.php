@@ -80,7 +80,11 @@
                  <div class="form-group">
                      <label for="exampleManufacturer">Manufacturer:</label>
                      <select class="form-control" name="manufacturer">
-                         
+                         <?php
+                                foreach($manufacturers as $key=>$value)
+                                    echo '<option value="'.$key.'">'.$value.'</option>';
+                            ?>
+                    </select>
                 </div>
             <table class="table table-bordered">
             <tr>
