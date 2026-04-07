@@ -53,6 +53,8 @@
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
                      $devices=array();
                      $manufacturers=array();
+                     $devices[0]='any';
+                     $manufacturers[0]='any';
                      while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                         $devices[$data['device_type_id']]=$data['device_type_name'];
                      }
