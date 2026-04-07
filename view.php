@@ -74,7 +74,13 @@
                               <h4>Status:</h4>
                               <p>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</p>'
 
-                     ?>
+                        ?>
+                        <div class = col>
+                           <form method="post" action="">
+                              <button type="submit" class="btn btn-primary" name="modify" value="Search">Modify</button>
+                              <button type="submit" class="btn btn-primary" name="delete" value="Search">Delete</button>
+                           </form>
+                        </div>
                </div>
           </div>
       </section>
