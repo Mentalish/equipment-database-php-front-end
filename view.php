@@ -65,17 +65,13 @@
                         $result=$dblink->query($sql) or
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         $data=$result->fetch_array(MYSQLI_ASSOC);
-                        echo '<h2>Device Type:</h2>
-                              <br>
+                        echo '<h5>Device Type:</h5>
                               <p>' . $data['device_type_name'] . '</p>
-                              <h2>Manufacturer:</h2>
-                              <br>
+                              <h5>Manufacturer:</h5>
                               <p>' . $data['manufacturer_name'] . '</p>
-                              <h2>Status:</h2>
-                              <br>
+                              <h5>Status:</h5>
                               <p>' . $data['status_name'] . '</p>
-                              <h2>Status:</h2>
-                              <br>
+                              <h5>Status:</h5>
                               <p>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</p>'
 
                      ?>
