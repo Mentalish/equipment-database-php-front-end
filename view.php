@@ -62,8 +62,6 @@
                         JOIN device_types AS dt ON d.device_type_id = dt.device_type_id
                         JOIN status AS s ON d.status_id = s.status_id
                         WHERE d.device_id=' . $_GET['item_id'];
-
-                        $sql="Select ``,`device_type_id` from `device_types` where `device_types`.`status_id` = '1'";
                         $result=$dblink->query($sql) or
                             die("<p>Something went wrong with $sql<br>".$dblink->error);
                      ?>
