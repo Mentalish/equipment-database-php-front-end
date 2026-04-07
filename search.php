@@ -46,7 +46,7 @@
                    <?php 
                         include("functions.php");
                         $dblink=db_connect("equipment");
-                        $sql="Select `device_type_name`,`device_type_id` from `devices_types`";
+                        $sql="Select `device_type_name`,`device_type_id` from `device_types`";
                         $result=$dblink->query($sql) or
                             die("<p>Something went wrong with $sql<br>".$dblink->error);
                         $devices=array();
