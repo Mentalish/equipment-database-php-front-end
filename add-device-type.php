@@ -48,9 +48,14 @@
                    <?php 
                         include("functions.php");
                         $dblink=db_connect("equipment");
-                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceExists")
+                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceTypeNameInvalid")
                         {
-                            echo '<div class="alert alert-danger" role="alert">Serial Number already exists in database!</div>';
+                            echo '<div class="alert alert-danger" role="alert">Device Type name is invalid.</div>';
+                        }
+
+                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceTypeExists")
+                        {
+                            echo '<div class="alert alert-danger" role="alert">Device Type already exists in database!</div>';
                         }
                      ?>
                     <form method="post" action="">
