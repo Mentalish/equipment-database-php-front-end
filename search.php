@@ -68,24 +68,30 @@
                      }
                   ?>
                  <form method="post" action="">
-                 <div class="form-group">
-                     <label for="exampleDevice">Device:</label>
-                     <select class="form-control" name="device">
-                         <?php
-                             foreach($devices as $key=>$value)
-                                 echo '<option value="'.$key.'">'.$value.'</option>';
-                         ?>
-                     </select>
-                 </div>
-                 <div class="form-group">
-                     <label for="exampleManufacturer">Manufacturer:</label>
-                     <select class="form-control" name="manufacturer">
-                         <?php
-                                foreach($manufacturers as $key=>$value)
+                    <div class="form-group">
+                        <label for="exampleDevice">Device:</label>
+                        <select class="form-control" name="device">
+                            <?php
+                                foreach($devices as $key=>$value)
                                     echo '<option value="'.$key.'">'.$value.'</option>';
                             ?>
-                    </select>
-                </div>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleManufacturer">Manufacturer:</label>
+                        <select class="form-control" name="manufacturer">
+                            <?php
+                                   foreach($manufacturers as $key=>$value)
+                                       echo '<option value="'.$key.'">'.$value.'</option>';
+                               ?>
+                       </select>
+                   </div>
+                   <div class="form-group">
+                        <label for="exampleSerial">Serial Number:</label>
+                        <input type="text" class="form-control" id="serialInput" name="serialnumber">
+                   </div>
+                        <button type="submit" class="btn btn-primary" name="submit" value="submit">Add Equipment</button>
+               </form>
             <table class="table table-bordered">
             <tr>
                <td>Manufacturer</td>
