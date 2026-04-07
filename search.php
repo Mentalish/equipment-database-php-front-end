@@ -72,7 +72,7 @@
                  <form method="post" action="">
                     <div class="form-group">
                         <label for="exampleDevice">Device:</label>
-                        <select class="form-control" name="device">
+                        <select class="form-control" name="deviceType">
                             <?php
                                 foreach($devices as $key=>$value)
                                     echo '<option value="'.$key.'">'.$value.'</option>';
@@ -97,22 +97,61 @@
                <?php
                 if (isset($_POST['search']))
                 {
-                    $device=$_POST['device'];
+                    $deviceType=$_POST['deviceType'];
                     $manufacturer=$_POST['manufacturer'];
                     $serialNumber=trim($_POST['serialnumber']);
+                    if($serialNumber) {
+                        validateSerialNumber($prefix, $body, $serialNumber);
+                    }
+               $hasPreviousWhere = false;
+                  
+               $sql = 'SELECT 
+                   m.manufacturer_name, 
+                   dt.device_type_name, 
+                   d.serial_number_prefix, 
+                   d.serial_number_body 
+               FROM devices AS d\n';
+               
+                    if($deviceType != 0) {
+                       $sql . 'WHERE d.device_type_id=' . $deviceType;
+                       $hasPreviousWhere = true;
+                    }
 
-                    validateSerialNumber($prefix, $body, $serialNumber);
+                    if($manufacturer != 0 && $hasPreviousWhere) {
+                       $sql . 'AND d.manufacturer_id=' . $manufacturer;
+                    } else {
+                       $sql . 'WHERE d.manufacturer_id=' . $manufacturer;
+                       $hasPreviousWhere = true;
+                    }
 
-                    $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
+                    if($serialNumber && $hasPreviousWhere) {
+                       $sql . 'AND d.serial_number_body=' . $body . ' AND d.serial_number_body=' . $prefix;
+                    } else {
+                       $sql . 'WHERE d.serial_number_body=' . $body . ' AND d.serial_number_body=' . $prefix;
+                       $hasPreviousWhere = true;
+                    }
 
-                    echo '<br><table class="table table-bordered">
+               $sql . 'JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
+               JOIN device_types as dt ON d.device_type_id = dt.device_type_id';
+                    $result=$dblink->query($sql) or
+                         die("<p>Something went wrong with $sql<br>".$dblink->error);
+                        echo '<br><table class="table table-bordered">
                         <tr>
                            <td>Manufacturer</td>
                            <td>Device Type</td>
                            <td>Serial Number</td>
                            <td>Status</td>
-                        </tr>
-                     </table>';
+                        </tr>';
+
+                        while ($data = $result->fetch_assoc()) {
+                           echo ' <tr>
+                              <td>' . $data['manufacturer_name'] . '</td>
+                              <td>' . $data['device_type'] . '</td>
+                              <td>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</td>
+                           </tr>';    
+                        }
+
+                     echo '</table>';
                 }
                ?>
       </section>
