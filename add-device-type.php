@@ -70,9 +70,10 @@
     {
        $deviceTypeName=$_POST['deviceType'];
        
-       if(!preg_match('/[a-z]/', $deviceTypeName)) 
+       if(!preg_match('/^[a-z\s]+$/', $deviceTypeName)) 
        {
-          redirect("add.php?msg=DeviceTypeNameInvalid");
+          redirect("add-device-type.php?msg=DeviceTypeNameInvalid");
+          exit();
        }
 
        $sql="Select `device_type_id` from `device_types` where `device_type_name`='$deviceTypeName'";
@@ -86,6 +87,6 @@
             redirect("index.php?msg=EquipmentAdded");
        }
         else
-            redirect("add.php?msg=DeviceTypeExists");
+            redirect("add-device-type.php?msg=DeviceTypeExists");
     }
 ?>
