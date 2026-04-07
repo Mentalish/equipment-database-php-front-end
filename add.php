@@ -110,7 +110,7 @@
              die("<p>Something went wrong with $sql<br>".$dblink->error);
         if ($rst->num_rows<=0)//sn not previously found
         {
-            $sql="Insert into `devices` (`device_type_id`,`manufacturer_id`, `serial_numer_prefix` `serial_number_body`) values ('$device','$manufacturer','$prefix','$body')";
+            $sql="Insert into `devices` (`device_type_id`,`manufacturer_id`, `serial_numer_prefix`, `serial_number_body`) values ('$device','$manufacturer','$prefix','$body')";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
             redirect("index.php?msg=EquipmentAdded");
