@@ -151,9 +151,9 @@
                     }
 
                     if($serialNumber && $hasPreviousWhere) {
-                       $sql .= " AND d.serial_number_body='$body' AND d.serial_number_body='$prefix'";
+                       $sql .= " AND d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'";
                     } else if($serialNumber){
-                       $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_body='$prefix'" ; 
+                       $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'" ; 
                        $hasPreviousWhere = true;
                     }
                     $sql .= " LIMIT 25 OFFSET 0";
