@@ -53,8 +53,8 @@
                         $devices=array();
                         $manufacturers=array();
                         while ($data=$result->fetch_array(MYSQLI_ASSOC))
-                            $devices[$data['device_id']]=$data['name'];
-                        $sql="Select `name`,`manufacturer_id` from `manufacturers` where `status_id`='1'";
+                            $devices[$data['device_id']]=$data['serial_number_body'];
+                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `status_id`='1'";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         while ($data=$result->fetch_array(MYSQLI_ASSOC))
