@@ -42,6 +42,13 @@
      <!-- FEATURE -->
       <section id="feature">
          <div class="container">
+            <table class="table table-bordered">
+               <tr>
+                  <td>Manufacturer</td>
+                  <td>Device Type</td>
+                  <td>Serial Number</td>
+               </tr>
+            </table>
          </div>
       </section>
 </body>
