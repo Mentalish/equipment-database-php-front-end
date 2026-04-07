@@ -46,13 +46,13 @@
                    <?php 
                         include("functions.php");
                         $dblink=db_connect("equipment");
-                        $sql="Select `serial_number_body`,`device_id` from `devices`";
+                        $sql="Select `device_type_name`,`device_type_id` from `devices_types`";
                         $result=$dblink->query($sql) or
                             die("<p>Something went wrong with $sql<br>".$dblink->error);
                         $devices=array();
                         $manufacturers=array();
                         while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
-                           $devices[$data['device_id']]=$data['serial_number_body'];
+                           $devices[$data['device_type_id']]=$data['device_type_name'];
                         }
                         $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers.status_id`='1'";
                         $result=$dblink->query($sql) or 
