@@ -47,18 +47,18 @@
                    <?php 
                         include("functions.php");
                         $dblink=db_connect("equipment");
-                        $sql="Select `name`,`auto_id` from `devices`";
+                        $sql="Select `serial_number_body`,`device_id` from `devices`";
                         $result=$dblink->query($sql) or
                             die("<p>Something went wrong with $sql<br>".$dblink->error);
                         $devices=array();
                         $manufacturers=array();
                         while ($data=$result->fetch_array(MYSQLI_ASSOC))
-                            $devices[$data['auto_id']]=$data['name'];
-                        $sql="Select `name`,`auto_id` from `manufacturers` where `status`='1'";
+                            $devices[$data['device_id']]=$data['name'];
+                        $sql="Select `name`,`manufacturer_id` from `manufacturers` where `status`='1'";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         while ($data=$result->fetch_array(MYSQLI_ASSOC))
-                            $manufacturers[$data['auto_id']]=$data['name'];
+                            $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
                         if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceExists")
                         {
                             echo '<div class="alert alert-danger" role="alert">Serial Number already exists in database!</div>';
