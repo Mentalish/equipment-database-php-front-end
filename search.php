@@ -134,7 +134,7 @@
                        $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_body='$prefix'" ; 
                        $hasPreviousWhere = true;
                     }
-
+                    $sql .= " LIMIT 25 OFFSET 0";
                     $result=$dblink->query($sql) or
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
                         echo '<br><table class="table table-bordered">
