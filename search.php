@@ -119,6 +119,8 @@
                     $deviceType=$_POST['deviceType'];
                     $manufacturer=$_POST['manufacturer'];
                     $serialNumber=trim($_POST['serialnumber']);
+                    $prefix = "";
+                    $body = "";
                     if($serialNumber) {
                         validateSerialNumber($prefix, $body, $serialNumber);
                     }
