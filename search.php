@@ -44,47 +44,51 @@
      <!-- FEATURE -->
       <section id="feature">
          <div class="container">
-                   <div class="col">
-                   <?php 
-                        include("functions.php");
-                        $dblink=db_connect("equipment");
-                        $sql="Select `device_type_name`,`device_type_id` from `device_types` where `device_types`.`status_id` = '1'";
-                        $result=$dblink->query($sql) or
-                            die("<p>Something went wrong with $sql<br>".$dblink->error);
-                        $devices=array();
-                        $manufacturers=array();
-                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
-                           $devices[$data['device_type_id']]=$data['device_type_name'];
-                        }
-                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
-                        $result=$dblink->query($sql) or 
-                           die("<p>Something went wrong with $sql<br>".$dblink->error);
-                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
-                           $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
-                        }
-                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceExists")
-                        {
-                            echo '<div class="alert alert-danger" role="alert">Serial Number already exists in database!</div>';
-                        }
-                     ?>
-                    <form method="post" action="">
-                    <div class="form-group">
-                        <label for="exampleDevice">Device:</label>
-                        <select class="form-control" name="device">
-                            <?php
-                                foreach($devices as $key=>$value)
-                                    echo '<option value="'.$key.'">'.$value.'</option>';
-                            ?>
-                        </select>
-                    </div>
+          <div class="row">
+                <?php 
+                     include("functions.php");
+                     $dblink=db_connect("equipment");
+                     $sql="Select `device_type_name`,`device_type_id` from `device_types` where `device_types`.`status_id` = '1'";
+                     $result=$dblink->query($sql) or
+                         die("<p>Something went wrong with $sql<br>".$dblink->error);
+                     $devices=array();
+                     $manufacturers=array();
+                     while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                        $devices[$data['device_type_id']]=$data['device_type_name'];
+                     }
+                     $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
+                     $result=$dblink->query($sql) or 
+                        die("<p>Something went wrong with $sql<br>".$dblink->error);
+                     while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                        $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
+                     }
+                     if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceExists")
+                     {
+                         echo '<div class="alert alert-danger" role="alert">Serial Number already exists in database!</div>';
+                     }
+                  ?>
+                 <form method="post" action="">
+                 <div class="form-group">
+                     <label for="exampleDevice">Device:</label>
+                     <select class="form-control" name="device">
+                         <?php
+                             foreach($devices as $key=>$value)
+                                 echo '<option value="'.$key.'">'.$value.'</option>';
+                         ?>
+                     </select>
+                 </div>
+                 <div class="form-group">
+                     <label for="exampleManufacturer">Manufacturer:</label>
+                     <select class="form-control" name="manufacturer">
+                         
+                </div>
             <table class="table table-bordered">
-               <tr>
-                  <td>Manufacturer</td>
-                  <td>Device Type</td>
-                  <td>Serial Number</td>
-               </tr>
-            </table>
-         </div>
+            <tr>
+               <td>Manufacturer</td>
+               <td>Device Type</td>
+               <td>Serial Number</td>
+            </tr>
+         </table>
       </section>
 </body>
 </html>
