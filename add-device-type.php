@@ -88,7 +88,7 @@
             $sql="Insert into `device_types` (`device_type_name`, `status_id`) values ('$deviceTypeName', '1')";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
-            redirect("index.php?msg=EquipmentAdded");
+            redirect("index.php?msg=DeviceTypeAdded");
        }
         else
             redirect("add-device-type.php?msg=DeviceTypeExists");
