@@ -49,20 +49,20 @@
                    <?php 
                         include("functions.php");
                         $dblink=db_connect("equipment");
-                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceTypeNameInvalid")
+                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerNameInvalid")
                         {
-                            echo '<div class="alert alert-danger" role="alert">Device Type name is invalid.</div>';
+                            echo '<div class="alert alert-danger" role="alert">Manufacturer name is invalid.</div>';
                         }
 
-                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceTypeExists")
+                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerExists")
                         {
-                            echo '<div class="alert alert-danger" role="alert">Device Type already exists in database!</div>';
+                            echo '<div class="alert alert-danger" role="alert">Manufacturer already exists in database!</div>';
                         }
                      ?>
                     <form method="post" action="">
                         <div class="form-group">
-                           <label for="exampleSerial">New Device Type:</label>
-                           <input type="text" class="form-control" id="serialInput" name="deviceType">
+                           <label for="exampleSerial">New Manufacturer:</label>
+                           <input type="text" class="form-control" id="serialInput" name="manufacturer">
                        </div>
                            <button type="submit" class="btn btn-primary" name="submit" value="submit">Add Device Type</button>
                     </form>
@@ -74,24 +74,24 @@
 <?php
     if (isset($_POST['submit']))
     {
-       $deviceTypeName=$_POST['deviceType'];
+       $manufacturerName=$_POST['manufacturer'];
        
-       if(!preg_match('/^[a-z\s]+$/', $deviceTypeName)) 
+       if(!preg_match('/^[A-Z][a-z\s]+$/', $manufacturerName)) 
        {
-          redirect("add-device-type.php?msg=DeviceTypeNameInvalid");
+          redirect("add-manufacturer.php?msg=ManufacturerNameInvalid");
        }
 
-       $sql="Select `device_type_id` from `device_types` where `device_type_name`='$deviceTypeName'";
+       $sql="Select `manufacturer_id` from `manufacturers` where `manufacturer_name`='$manufacturerName'";
        $rst=$dblink->query($sql) or
              die("<p>Something went wrong with $sql<br>".$dblink->error);
        if ($rst->num_rows<=0)//sn not previously found
        {
-            $sql="Insert into `device_types` (`device_type_name`, `status_id`) values ('$deviceTypeName', '1')";
+            $sql="Insert into `manufacturers` (`manufacturer_name`, `status_id`) values ('$manufacturerName', '1')";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
-            redirect("index.php?msg=DeviceTypeAdded");
+            redirect("index.php?msg=ManufactuerAdded");
        }
         else
-            redirect("add-device-type.php?msg=DeviceTypeExists");
+            redirect("add-manufacturer.php?msg=ManufacturerExists");
     }
 ?>
