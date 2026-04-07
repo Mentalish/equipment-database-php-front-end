@@ -118,14 +118,14 @@
                     }
 
                     if($manufacturer != 0 && $hasPreviousWhere) {
-                       $sql .= 'AND d.manufacturer_id=' . $manufacturer;
+                       $sql .= ' AND d.manufacturer_id=' . $manufacturer;
                     } else if($manufacturer != 0) {
                        $sql .= 'WHERE d.manufacturer_id=' . $manufacturer;
                        $hasPreviousWhere = true;
                     }
 
                     if($serialNumber && $hasPreviousWhere) {
-                       $sql .= 'AND d.serial_number_body=' . $body . ' AND d.serial_number_body=' . $prefix;
+                       $sql .= ' AND d.serial_number_body=' . $body . ' AND d.serial_number_body=' . $prefix;
                     } else if($serialNumber){
                        $sql .= 'WHERE d.serial_number_body=' . $body . ' AND d.serial_number_body=' . $prefix;
                        $hasPreviousWhere = true;
