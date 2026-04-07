@@ -125,7 +125,8 @@
                         validateSerialNumber($prefix, $body, $serialNumber);
                     }
                $hasPreviousWhere = false;
-               $sql = 'SELECT 
+                    $sql = 'SELECT
+                   d.device_id, 
                    m.manufacturer_name, 
                    dt.device_type_name, 
                    d.serial_number_prefix, 
