@@ -52,20 +52,20 @@
                             die("<p>Something went wrong with $sql<br>".$dblink->error);
                         $devices=array();
                         $manufacturers=array();
-                        while ($data=$result->fetch_array(MYSQLI_ASSOC))
-                            $devices[$data['device_id']]=$data['serial_number_body'];
+                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                           $devices[$data['device_id']]=$data['serial_number_body'];
+                        }
                         $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `status_id`='1'";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
-                        while ($data=$result->fetch_array(MYSQLI_ASSOC))
-                            $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
+                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                           $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
+                        }
                         if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceExists")
                         {
                             echo '<div class="alert alert-danger" role="alert">Serial Number already exists in database!</div>';
-
                         }
-                   
-                   ?>
+                     ?>
                     <form method="post" action="">
                     <div class="form-group">
                         <label for="exampleDevice">Device:</label>
