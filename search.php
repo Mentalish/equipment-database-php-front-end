@@ -113,25 +113,25 @@
                FROM devices AS d';
                
                     if($deviceType != 0) {
-                       $sql .= 'WHERE d.device_type_id=' . $deviceType;
+                       $sql .= "WHERE d.device_type_id='$deviceType'";
                        $hasPreviousWhere = true;
                     }
 
                     if($manufacturer != 0 && $hasPreviousWhere) {
-                       $sql .= ' AND d.manufacturer_id=' . $manufacturer;
+                       $sql .= " AND d.manufacturer_id='$manufacturer'";
                     } else if($manufacturer != 0) {
-                       $sql .= 'WHERE d.manufacturer_id=' . $manufacturer;
+                       $sql .= "WHERE d.manufacturer_id='$manufacturer'";
                        $hasPreviousWhere = true;
                     }
 
                     if($serialNumber && $hasPreviousWhere) {
-                       $sql .= ' AND d.serial_number_body=' . $body . ' AND d.serial_number_body=' . $prefix;
+                       $sql .= " AND d.serial_number_body='$body' AND d.serial_number_body='$prefix'";
                     } else if($serialNumber){
-                       $sql .= 'WHERE d.serial_number_body=' . $body . ' AND d.serial_number_body=' . $prefix;
+                       $sql .= "WHERE d.serial_number_body='$body' AND d.serial_number_body='$prefix'" ; 
                        $hasPreviousWhere = true;
                     }
 
-               $sql . 'JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
+               $sql .= 'JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
                JOIN device_types as dt ON d.device_type_id = dt.device_type_id';
                     $result=$dblink->query($sql) or
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
