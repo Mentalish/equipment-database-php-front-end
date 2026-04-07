@@ -69,6 +69,11 @@
     if (isset($_POST['submit']))
     {
        $deviceTypeName=$_POST['deviceType'];
+       
+       if(!preg_grep('/[a-z]/', $deviceTypeName)) 
+       {
+          redirect("add.php?msg=DeviceTypeNameInvalid");
+       }
 
        $sql="Select `device_type_id` from `device_types` where `device_type_name`='$deviceTypeName'";
        $rst=$dblink->query($sql) or
