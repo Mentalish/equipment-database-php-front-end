@@ -103,11 +103,12 @@
 
                     $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
 
-                    echo '<table class="table table-bordered">
+                    echo '<br><table class="table table-bordered">
                         <tr>
                            <td>Manufacturer</td>
                            <td>Device Type</td>
                            <td>Serial Number</td>
+                           <td>Status</td>
                         </tr>
                      </table>';
                 }
