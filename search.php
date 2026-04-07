@@ -165,6 +165,7 @@
                            <td>Device Type</td>
                            <td>Serial Number</td>
                            <td>Status</td>
+                           <td>View</td>
                         </tr>';
 
                         while ($data = $result->fetch_assoc()) {
@@ -173,6 +174,8 @@
                               <td>' . $data['device_type_name'] . '</td>
                               <td>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</td>
                               <td>' . $data['status_name'] . '</td>
+                              <td> <button type="submit" class="btn btn-primary" name="item_id" value="' . $data['device_id'] . '">Search</button>
+</td>
                            </tr>';    
                         }
 
