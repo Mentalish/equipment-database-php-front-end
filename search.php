@@ -111,7 +111,11 @@
                    d.serial_number_prefix, 
                    d.serial_number_body 
                FROM devices AS d';
-               
+
+                $sql .= ' JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
+               JOIN device_types as dt ON d.device_type_id = dt.device_type_id';
+
+
                     if($deviceType != 0) {
                        $sql .= " WHERE d.device_type_id='$deviceType'";
                        $hasPreviousWhere = true;
@@ -131,8 +135,6 @@
                        $hasPreviousWhere = true;
                     }
 
-               $sql .= ' JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
-               JOIN device_types as dt ON d.device_type_id = dt.device_type_id';
                     $result=$dblink->query($sql) or
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
                         echo '<br><table class="table table-bordered">
