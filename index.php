@@ -32,6 +32,7 @@
                          <li><a href="index.php" class="smoothScroll">Home</a></li>
                          <li><a href="search.php" class="smoothScroll">Search Equipment</a></li>
                          <li><a href="add.php" class="smoothScroll">Add Equipment</a></li>
+                         <li><a href="add.php" class="smoothScroll">Add Device Type</a></li>
                     </ul>
                </div>
           </div>
