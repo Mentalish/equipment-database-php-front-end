@@ -53,8 +53,10 @@
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
                      $devices=array();
                      $manufacturers=array();
+                     $statuses=array();
                      $devices[0]='any';
                      $manufacturers[0]='any';
+                     $statuses[0]='any';
                      while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                         $devices[$data['device_type_id']]=$data['device_type_name'];
                      }
@@ -64,6 +66,14 @@
                      while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                         $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
                      }
+
+                     $sql="Select `status_name`,`status_id` from `status`";
+                     $result=$dblink->query($sql) or 
+                        die("<p>Something went wrong with $sql<br>".$dblink->error);
+                     while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                        $statuses[$data['status_id']]=$data['status_name'];
+                     }
+
                      if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceExists")
                      {
                          echo '<div class="alert alert-danger" role="alert">Serial Number already exists in database!</div>';
@@ -89,6 +99,15 @@
                        </select>
                    </div>
                    <div class="form-group">
+                        <label for="exampleStatus">Status:</label>
+                        <select class="form-control" name="status">
+                            <?php
+                                   foreach($statuses as $key=>$value)
+                                       echo '<option value="'.$key.'">'.$value.'</option>';
+                               ?>
+                       </select>
+                   </div>
+                   <div class="form-group">
                         <label for="exampleSerial">Serial Number:</label>
                         <input type="text" class="form-control" id="serialInput" name="serialnumber">
                    </div>
@@ -104,7 +123,6 @@
                         validateSerialNumber($prefix, $body, $serialNumber);
                     }
                $hasPreviousWhere = false;
-                  
                $sql = 'SELECT 
                    m.manufacturer_name, 
                    dt.device_type_name, 
