@@ -61,7 +61,7 @@
                         $sql .= ' JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
                         JOIN device_types AS dt ON d.device_type_id = dt.device_type_id
                         JOIN status AS s ON d.status_id = s.status_id
-                        WHERE device_id=' . $_GET['item_id'];
+                        WHERE d.device_id=' . $_GET['item_id'];
 
                         $sql="Select ``,`device_type_id` from `device_types` where `device_types`.`status_id` = '1'";
                         $result=$dblink->query($sql) or
