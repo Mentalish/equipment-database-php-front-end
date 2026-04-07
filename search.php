@@ -110,7 +110,7 @@
                    dt.device_type_name, 
                    d.serial_number_prefix, 
                    d.serial_number_body 
-               FROM devices AS d\n';
+               FROM devices AS d';
                
                     if($deviceType != 0) {
                        $sql .= 'WHERE d.device_type_id=' . $deviceType;
