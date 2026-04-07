@@ -109,11 +109,13 @@
                    m.manufacturer_name, 
                    dt.device_type_name, 
                    d.serial_number_prefix, 
-                   d.serial_number_body 
+                   d.serial_number_body,
+                   s.status_name 
                FROM devices AS d';
 
                 $sql .= ' JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
-               JOIN device_types as dt ON d.device_type_id = dt.device_type_id';
+               JOIN device_types AS dt ON d.device_type_id = dt.device_type_id
+               JOIN status AS s ON d.status_id = s.status_id';
 
 
                     if($deviceType != 0) {
@@ -150,6 +152,7 @@
                               <td>' . $data['manufacturer_name'] . '</td>
                               <td>' . $data['device_type_name'] . '</td>
                               <td>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</td>
+                              <td>' . $data['status_name'] . '</td>
                            </tr>';    
                         }
 
