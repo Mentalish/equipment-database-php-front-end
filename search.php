@@ -115,7 +115,7 @@
 
                 $sql .= ' JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
                JOIN device_types AS dt ON d.device_type_id = dt.device_type_id
-               JOIN stauts AS s ON d.status_id = s.status_id';
+               JOIN status AS s ON d.status_id = s.status_id';
 
 
                     if($deviceType != 0) {
