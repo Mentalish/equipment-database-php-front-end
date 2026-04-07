@@ -24,7 +24,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="#" class="navbar-brand">Add New Equipment</a>
+                    <a href="#" class="navbar-brand">Add New Manufacturer</a>
                </div>
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
@@ -64,7 +64,7 @@
                            <label for="exampleSerial">New Manufacturer:</label>
                            <input type="text" class="form-control" id="serialInput" name="manufacturer">
                        </div>
-                           <button type="submit" class="btn btn-primary" name="submit" value="submit">Add Device Type</button>
+                           <button type="submit" class="btn btn-primary" name="submit" value="submit">Add Manufacturer</button>
                     </form>
                </div>
           </div>
@@ -89,7 +89,7 @@
             $sql="Insert into `manufacturers` (`manufacturer_name`, `status_id`) values ('$manufacturerName', '1')";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
-            redirect("index.php?msg=ManufactuerAdded");
+            redirect("index.php?msg=ManufacturerAdded");
        }
         else
             redirect("add-manufacturer.php?msg=ManufacturerExists");

@@ -24,7 +24,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="#" class="navbar-brand">Add New Equipment</a>
+                    <a href="#" class="navbar-brand">Add New Device Type</a>
                </div>
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
