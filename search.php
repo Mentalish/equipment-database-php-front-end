@@ -113,7 +113,10 @@
                    </div>
                         <button type="submit" class="btn btn-primary" name="search" value="Search">Search</button>
                </form>
-               <?php
+<?php
+                if(isset($_POST['item_id'])) {
+                  redirect("view.php?item_id=" . $_POST['item_id']);
+                }
                 if (isset($_POST['search']))
                 {
                     $deviceType=$_POST['deviceType'];
@@ -175,7 +178,7 @@
                               <td>' . $data['device_type_name'] . '</td>
                               <td>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</td>
                               <td>' . $data['status_name'] . '</td>
-                              <td> <button type="submit" class="btn btn-primary" name="item_id" value="' . $data['device_id'] . '">Search</button>
+                              <td> <button type="submit" class="btn btn-primary" name="item_id" value="' . $data['device_id'] . '">View Equipment</button>
 </td>
                            </tr>';    
                         }
