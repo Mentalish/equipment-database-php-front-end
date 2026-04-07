@@ -73,7 +73,6 @@
        if(!preg_match('/^[a-z\s]+$/', $deviceTypeName)) 
        {
           redirect("add-device-type.php?msg=DeviceTypeNameInvalid");
-          exit();
        }
 
        $sql="Select `device_type_id` from `device_types` where `device_type_name`='$deviceTypeName'";
