@@ -54,7 +54,7 @@
                         $manufacturers=array();
                         while ($data=$result->fetch_array(MYSQLI_ASSOC))
                             $devices[$data['device_id']]=$data['name'];
-                        $sql="Select `name`,`manufacturer_id` from `manufacturers` where `status`='1'";
+                        $sql="Select `name`,`manufacturer_id` from `manufacturers` where `status_id`='1'";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         while ($data=$result->fetch_array(MYSQLI_ASSOC))
