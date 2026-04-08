@@ -24,7 +24,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="#" class="navbar-brand">Modify Manufacturer</a>
+                    <a href="#" class="navbar-brand">Modify Device Type</a>
                </div>
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
