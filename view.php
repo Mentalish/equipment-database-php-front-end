@@ -48,7 +48,7 @@
                <div class="row">
                   <?php
                   include("functions.php");
-                  if(isset($_GET['edit_mode']) && $_GET['edit_mode'] == false)
+                  if(isset($_GET['edit_mode']) && $_GET['edit_mode'] == 'false')
                   {
                      $dblink=db_connect("equipment");
                         $sql = 'SELECT
