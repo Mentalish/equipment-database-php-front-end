@@ -119,7 +119,7 @@
                                  if($data['device_id'] == $key) {
                                     $selected="selected";
                                  } 
-                                 echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
+                                 echo '<option ' . $selected . ' value="'.$key.'">'.$value.'</option>';
                               }
                             ?>
                         </select>
@@ -133,7 +133,7 @@
                                  if($data['manufacturer_id'] == $key) {
                                      $selected="selected";
                                  } 
-                                 echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
+                                 echo '<option ' . $selected . ' value="'.$key.'">'.$value.'</option>';
                               }
                            ?>
                        </select>
@@ -147,7 +147,7 @@
                            if($data['status_id'] == $key) {
                               $selected="selected";
                            } 
-                           echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
+                           echo '<option ' . $selected . ' value="'.$key.'">'.$value.'</option>';
                         }
                         ?>
                        </select>
