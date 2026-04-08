@@ -24,7 +24,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="#" class="navbar-brand">Add New Manufacturer</a>
+                    <a href="#" class="navbar-brand">Modify Manufacturer</a>
                </div>
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
@@ -50,6 +50,7 @@
                   <?php
                         include("functions.php");
                         $manufacturers=array();
+                        $statuses=array();
                         $dblink=db_connect("equipment");
                         $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
                         $result=$dblink->query($sql) or 
@@ -57,7 +58,13 @@
                         while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                            $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
                         }
-                        $dblink=db_connect("equipment");
+
+                     $sql="Select `status_name`,`status_id` from `status`";
+                     $result=$dblink->query($sql) or 
+                        die("<p>Something went wrong with $sql<br>".$dblink->error);
+                     while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                        $statuses[$data['status_id']]=$data['status_name'];
+                     }
                         if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerNameInvalid")
                         {
                             echo '<div class="alert alert-danger" role="alert">Manufacturer name is invalid.</div>';
@@ -78,13 +85,22 @@
                             ?>
                         </select>
                     </div>
-
-                    <form method="post" action="">
                         <div class="form-group">
                            <label for="exampleSerial">New Manufacturer Name:</label>
                            <input type="text" class="form-control" id="serialInput" name="manufacturer">
                        </div>
-                           <button type="submit" class="btn btn-primary" name="save" value="submit">Save</button>
+
+                        <div class="form-group">
+                           <label for="exampleStatus">Status:</label>
+                           <select class="form-control" name="status">
+                            <?php
+                                   foreach($statuses as $key=>$value)
+                                       echo '<option value="'.$key.'">'.$value.'</option>';
+                               ?>
+                           </select>
+                        </div>
+
+                           <button type="submit" class="btn btn-success" name="save" value="submit">Save</button>
                     </form>
                </div>
           </div>
