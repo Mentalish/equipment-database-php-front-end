@@ -91,7 +91,7 @@
                        </div>
 
                         <div class="form-group">
-                           <label for="exampleStatus">Status:</label>
+                           <label for="exampleStatus">Set Status:</label>
                            <select class="form-control" name="status">
                             <?php
                                    foreach($statuses as $key=>$value)
