@@ -125,7 +125,7 @@
                 die("<p>Something went wrong with $sql<br>".$dblink->error);
           if ($rst->num_rows<=0)//name not previously found
           {
-            $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE `manufacturer_id='$manufacturer'";
+            $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE `manufacturer_id`='$manufacturer'";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
             redirect("index.php?msg=ManufacturerEdited");
