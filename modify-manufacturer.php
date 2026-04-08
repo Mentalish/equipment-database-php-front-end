@@ -131,15 +131,14 @@
             redirect("index.php?msg=ManufacturerEdited");
           }
           else {
-            $sql="UPDATE `manufacturers` SET `status_id`='$status' WHERE `manufacturer_id=`'$manufacturer'";
-            $dblink->query($sql) or
-                 die("<p>Something went wrong with $sql<br>".$dblink->error);
-            redirect("index.php?msg=ManufacturerEdited");
-
+            
           }
        } else 
        {
-       
+       $sql="UPDATE `manufacturers` SET `status_id`='$status' WHERE `manufacturer_id=`'$manufacturer'";
+       $dblink->query($sql) or
+            die("<p>Something went wrong with $sql<br>".$dblink->error);
+       redirect("index.php?msg=ManufacturerEdited");
        }
     }else {
     
