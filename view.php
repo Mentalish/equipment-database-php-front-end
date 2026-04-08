@@ -190,7 +190,7 @@
 
         validateSerialNumber($prefix, $body, $serialNumber);
 
-        $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
+        $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix' and `device_id` !='" . $_GET['item_id'] . "'";
         $rst=$dblink->query($sql) or
              die("<p>Something went wrong with $sql<br>".$dblink->error);
         if ($rst->num_rows<=0)//sn not previously found
