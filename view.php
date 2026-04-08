@@ -92,20 +92,20 @@
                         $devices=array();
                         $manufacturers=array();
                         $statuses=array();
-                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
-                           $devices[$data['device_type_id']]=$data['device_type_name'];
+                        while ($row=$result->fetch_array(MYSQLI_ASSOC)) {
+                           $devices[$row['device_type_id']]=$row['device_type_name'];
                         }
                         $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
-                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
-                           $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
+                        while ($row=$result->fetch_array(MYSQLI_ASSOC)) {
+                           $manufacturers[$row['manufacturer_id']]=$row['manufacturer_name'];
                         }
                      $sql="Select `status_name`,`status_id` from `status`";
                      $result=$dblink->query($sql) or 
                         die("<p>Something went wrong with $sql<br>".$dblink->error);
-                     while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
-                        $statuses[$data['status_id']]=$data['status_name'];
+                     while ($row=$result->fetch_array(MYSQLI_ASSOC)) {
+                        $statuses[$row['status_id']]=$row['status_name'];
                      }
                   
                   ?>
