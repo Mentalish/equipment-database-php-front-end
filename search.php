@@ -122,6 +122,7 @@
                     $deviceType=$_POST['deviceType'];
                     $manufacturer=$_POST['manufacturer'];
                     $serialNumber=trim($_POST['serialnumber']);
+                    $status=$_POST['status'];
                     $prefix = "";
                     $body = "";
                     if($serialNumber) {
@@ -129,7 +130,8 @@
                     }
                $hasPreviousWhere = false;
                     $sql = 'SELECT
-                   d.device_id, 
+                   d.device_id,
+                   d.status_id,
                    m.manufacturer_name, 
                    dt.device_type_name, 
                    d.serial_number_prefix, 
@@ -160,6 +162,14 @@
                        $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'" ; 
                        $hasPreviousWhere = true;
                     }
+
+                    if($status != 'any' && $hasPreviousWhere) {
+                       $sql .= " AND d.status_id='$status'";
+                    } else if($serialNumber){
+                       $sql .= " WHERE d.status_id='$status'" ; 
+                       $hasPreviousWhere = true;
+                    }
+
                     $sql .= " LIMIT 25 OFFSET 0";
                     $result=$dblink->query($sql) or
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
