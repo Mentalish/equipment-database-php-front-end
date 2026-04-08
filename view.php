@@ -77,8 +77,8 @@
                               <p>' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . '</p>';
                         echo '<div class = col>
                            <form method="post" action="">
+                              <button type="submit" class="btn btn-warning" name="back" value="Search">Back</button>
                               <button type="submit" class="btn btn-primary" name="modify" value="Search">Modify</button>
-                              <button type="submit" class="btn btn-danger" name="delete" value="Search">Delete</button>
                            </form>
                         </div>';
 
@@ -156,5 +156,9 @@
     if (isset($_POST['view']))
     {
         redirect("view.php?item_id=" . $_GET['item_id'] . "&edit_mode=false");
+    }
+    if(isset($_POST['back'])) 
+    {
+      redirect("search.php");
     }
 ?>
