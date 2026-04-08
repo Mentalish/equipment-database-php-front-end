@@ -141,7 +141,7 @@
                    </div>
                         <button type="submit" class="btn btn-success" name="search" value="Search">Save</button>
                </form>
-               </div>
+            </div>
           </div>
       </section>
 </body>
