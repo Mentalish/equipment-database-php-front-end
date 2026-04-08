@@ -148,13 +148,13 @@
                     if($deviceType != 0) {
                        $sql .= " AND d.device_type_id='$deviceType' AND dt.status_id = '1'";
                     }else {
-                       $sql .= " AND dt.status='1'";
+                       $sql .= " AND dt.status_id='1'";
                     }
 
                     if($manufacturer != 0) {
                        $sql .= " AND d.manufacturer_id='$manufacturer' AND m.status_id = '1'";
                     } else {
-                       $sql .= " AND m.status='1'";
+                       $sql .= " AND m.status_id='1'";
                     }
 
                     if($serialNumber) {
