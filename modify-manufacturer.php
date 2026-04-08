@@ -131,7 +131,7 @@
             redirect("index.php?msg=ManufacturerEdited");
           }
           else {
-            redirect("modify-manufacturer.php?msg=ManufacturerNameDuplicate");
+            redirect("modify-manufacturer.php?msg=ManufacturerDuplicate");
           }
        } else 
        {
