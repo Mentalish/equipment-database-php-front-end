@@ -115,28 +115,31 @@
        $status = $_POST['status'];
        if($manufacturerName) 
        {
-       
-       } 
-       if(!preg_match('/^[A-Z][a-z\s]+$/', $manufacturerName)) 
-       {
-          redirect("modify-manufacturer.php?msg=ManufacturerNameInvalid");
-       }
+          if(!preg_match('/^[A-Z][a-z\s]+$/', $manufacturerName)) 
+          {
+             redirect("modify-manufacturer.php?msg=ManufacturerNameInvalid");
+          }
 
-       $sql="Select `manufacturer_id` from `manufacturers` where `manufacturer_name`='$manufacturerName' and `manufacturer_id`!='$manufacturer'";
-       $rst=$dblink->query($sql) or
-             die("<p>Something went wrong with $sql<br>".$dblink->error);
-       if ($rst->num_rows<=0)//name not previously found
-       {
-            $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE '$manufacturer'";
+          $sql="Select `manufacturer_id` from `manufacturers` where `manufacturer_name`='$manufacturerName' and `manufacturer_id`!='$manufacturer'";
+          $rst=$dblink->query($sql) or
+                die("<p>Something went wrong with $sql<br>".$dblink->error);
+          if ($rst->num_rows<=0)//name not previously found
+          {
+            $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE `manufacturer_id=`'$manufacturer'";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
             redirect("index.php?msg=ManufacturerEdited");
-       }
-       else {
-         $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE `manufacturer_id=`'$manufacturer'";
-         $dblink->query($sql) or
-              die("<p>Something went wrong with $sql<br>".$dblink->error);
-         redirect("index.php?msg=ManufacturerEdited");
+          }
+          else {
+            $sql="UPDATE `manufacturers` SET `status_id`='$status' WHERE `manufacturer_id=`'$manufacturer'";
+            $dblink->query($sql) or
+                 die("<p>Something went wrong with $sql<br>".$dblink->error);
+            redirect("index.php?msg=ManufacturerEdited");
+
+          }
+       } else 
+       {
+       
        }
     }else {
     
