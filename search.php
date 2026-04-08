@@ -185,7 +185,7 @@
                        $sql .= " AND d.status_id='$status'";
                     }
                     $page = $_GET['page'];
-                    $offset = "25" * ($page - 1);
+                    $offset = "25" * $page;
                     $sql .= " LIMIT 25 OFFSET $offset";
                     $result=$dblink->query($sql) or
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
