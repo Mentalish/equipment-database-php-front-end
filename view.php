@@ -158,7 +158,7 @@
                         <label for="exampleSerial">Serial Number:</label>
                         <?php echo '<input type="text" class="form-control" value="' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . ' id="serialInput" name="serialnumber">'; ?>
                    </div>
-                        <button type="submit" class="btn btn-success" name="search" value="Search">Save</button>
+                        <button type="submit" class="btn btn-success" name="save" value="Search">Save</button>
                         <button type="submit" class="btn btn-primary" name="view" value="Search">View</button>
                </form>
                <?php  }?>
@@ -179,5 +179,33 @@
     if(isset($_POST['back'])) 
     {
       redirect("search.php");
+    }
+    if(isset($_POST['save']))
+    {
+        $device=$_POST['device'];
+        $manufacturer=$_POST['manufacturer'];
+        $serialNumber=trim($_POST['serialnumber']);
+        $status = $_POST['status'];
+
+        validateSerialNumber($prefix, $body, $serialNumber);
+
+        $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
+        $rst=$dblink->query($sql) or
+             die("<p>Something went wrong with $sql<br>".$dblink->error);
+        if ($rst->num_rows<=0)//sn not previously found
+        {
+           $sql="UPDATE `devices` SET 
+              `device_type_id` = '$device'
+              `manufacturer_id` = '$manufacturer'
+              `status_id` = '$status'
+              `serial_number_prefix` = '$prefix'
+              `serial_number_body` = '$body'
+              WHERE `device_id` ='" . $_GET['item_id'] . "'";
+            $dblink->query($sql) or
+                 die("<p>Something went wrong with $sql<br>".$dblink->error);
+            redirect("view.php?item_id=" . $_GET['item_id'] . "&edit_mode=true&msg=success");
+        }
+        else
+            redirect("view.php?item_id=" . $_GET['item_id'] . "&edit_mode=true&msg=duplicate");
     }
 ?>
