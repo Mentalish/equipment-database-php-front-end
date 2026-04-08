@@ -87,7 +87,7 @@
                     </div>
                         <div class="form-group">
                            <label for="exampleSerial">New Manufacturer Name:</label>
-                           <input type="text" class="form-control" id="serialInput" name="manufacturer">
+                           <input type="text" class="form-control" id="serialInput" name="new_manufacturer">
                        </div>
 
                         <div class="form-group">
@@ -108,25 +108,36 @@
 </body>
 </html>
 <?php
-    if (isset($_POST['submit']))
+    if (isset($_POST['save']))
     {
-       $manufacturerName=$_POST['manufacturer'];
+       $manufacturerName=$_POST['new_manufacturer'];
+       $manufacturer = $_POST['manufacturer'];
+       $status = $_POST['status'];
+       if($manufacturerName) 
+       {
        
+       } 
        if(!preg_match('/^[A-Z][a-z\s]+$/', $manufacturerName)) 
        {
-          redirect("add-manufacturer.php?msg=ManufacturerNameInvalid");
+          redirect("modify-manufacturer.php?msg=ManufacturerNameInvalid");
        }
 
-       $sql="Select `manufacturer_id` from `manufacturers` where `manufacturer_name`='$manufacturerName'";
+       $sql="Select `manufacturer_id` from `manufacturers` where `manufacturer_name`='$manufacturerName' and `manufacturer_id`!='$manufacturer'";
        $rst=$dblink->query($sql) or
              die("<p>Something went wrong with $sql<br>".$dblink->error);
-       if ($rst->num_rows<=0)//sn not previously found
+       if ($rst->num_rows<=0)//name not previously found
        {
-            $sql="Insert into `manufacturers` (`manufacturer_name`, `status_id`) values ('$manufacturerName', '1')";
+            $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE '$manufacturer'";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
-            redirect("index.php?msg=ManufacturerAdded");
+            redirect("index.php?msg=ManufacturerEdited");
        }
-        else
-            redirect("add-manufacturer.php?msg=ManufacturerExists");
+       else {
+         $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE `manufacturer_id=`'$manufacturer'";
+         $dblink->query($sql) or
+              die("<p>Something went wrong with $sql<br>".$dblink->error);
+         redirect("index.php?msg=ManufacturerEdited");
+       }
+    }else {
+    
     }
