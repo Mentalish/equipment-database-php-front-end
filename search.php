@@ -148,6 +148,8 @@
                     if($deviceType != 0) {
                        $sql .= " WHERE d.device_type_id='$deviceType' AND dt.status_id = '1'";
                        $hasPreviousWhere = true;
+                    }else {
+                       $sql .= " WHERE dt.status='1'";
                     }
 
                     if($manufacturer != 0 && $hasPreviousWhere) {
@@ -155,6 +157,8 @@
                     } else if($manufacturer != 0) {
                        $sql .= " WHERE d.manufacturer_id='$manufacturer' AND m.status_id = '1'";
                        $hasPreviousWhere = true;
+                    } else {
+                       $sql .= " WHERE m.status='1'";
                     }
 
                     if($serialNumber && $hasPreviousWhere) {
@@ -162,7 +166,7 @@
                     } else if($serialNumber){
                        $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'" ; 
                        $hasPreviousWhere = true;
-                    }
+                    } 
 
                     if($status != 0 && $hasPreviousWhere) {
                        $sql .= " AND d.status_id='$status'";
