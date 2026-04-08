@@ -182,7 +182,7 @@
     }
     if(isset($_POST['save']))
     {
-        $device=$_POST['device'];
+        $device=$_POST['deviceType'];
         $manufacturer=$_POST['manufacturer'];
         $serialNumber=trim($_POST['serialnumber']);
         $status = $_POST['status'];
@@ -195,10 +195,10 @@
         if ($rst->num_rows<=0)//sn not previously found
         {
            $sql="UPDATE `devices` SET 
-              `device_type_id` = '$device'
-              `manufacturer_id` = '$manufacturer'
-              `status_id` = '$status'
-              `serial_number_prefix` = '$prefix'
+              `device_type_id` = '$device',
+              `manufacturer_id` = '$manufacturer',
+              `status_id` = '$status',
+              `serial_number_prefix` = '$prefix',
               `serial_number_body` = '$body'
               WHERE `device_id` ='" . $_GET['item_id'] . "'";
             $dblink->query($sql) or
