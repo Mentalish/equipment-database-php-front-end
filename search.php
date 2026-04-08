@@ -120,7 +120,7 @@
                    </div>
                         <button type="submit" class="btn btn-primary" name="search" value="Search">Search</button>
                         <button type="submit" class="btn btn-warning" name="pagedown" value="pagedown">&lt</button>
-                        
+                        <?php echo '<p>' . $page . '<p>';?> 
                         <button type="submit" class="btn btn-warning" name="pageup" value="pageup">&gt</button>
 
 
