@@ -105,7 +105,7 @@
                      while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                         $statuses[$data['status_id']]=$data['status_name'];
                      }
-                  }
+                  
                   ?>
                   <form method="post" action="">
                     <div class="form-group">
@@ -141,6 +141,7 @@
                    </div>
                         <button type="submit" class="btn btn-success" name="search" value="Search">Save</button>
                </form>
+               <?php  }?>
             </div>
           </div>
       </section>
