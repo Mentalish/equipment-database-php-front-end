@@ -67,6 +67,10 @@
                     {
                        echo '<div class="alert alert-success" role="alert">Manufacturer edited succesfully.</div>';
                     }
+                     if(isset($_REQUEST['msg']) && $_REQUEST['msg']=="deviceTypeEdited") 
+                    {
+                       echo '<div class="alert alert-success" role="alert">Device Type edited succesfully.</div>';
+                    }
 
                     ?>
                      <div class="col-md-4 col-sm-4">

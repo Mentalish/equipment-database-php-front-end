@@ -139,6 +139,6 @@
        $sql="UPDATE `device_types` SET `status_id`='$status' WHERE `device_type_id`='$deviceType'";
        $dblink->query($sql) or
             die("<p>Something went wrong with $sql<br>".$dblink->error);
-       redirect("index.php?msg=ManufacturerEdited");
+       redirect("index.php?msg=deviceTypeEdited");
        }
     }
