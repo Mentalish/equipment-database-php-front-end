@@ -52,7 +52,7 @@
                         $manufacturers=array();
                         $statuses=array();
                         $dblink=db_connect("equipment");
-                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
+                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers`";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
