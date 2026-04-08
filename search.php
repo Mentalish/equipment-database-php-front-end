@@ -163,9 +163,9 @@
                        $hasPreviousWhere = true;
                     }
 
-                    if($status != 'any' && $hasPreviousWhere) {
+                    if($status != 0 && $hasPreviousWhere) {
                        $sql .= " AND d.status_id='$status'";
-                    } else if($serialNumber){
+                    } else if($status != 0){
                        $sql .= " WHERE d.status_id='$status'" ; 
                        $hasPreviousWhere = true;
                     }
