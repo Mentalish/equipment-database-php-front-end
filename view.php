@@ -48,7 +48,7 @@
                <div class="row">
                   <?php
                   include("functions.php");
-                  if(isset($_GET['edit_mode']) && $_GET['edit_mode'] == 'false')
+                  if(!isset($_GET['edit_mode']) || $_GET['edit_mode'] == 'false')
                   {
                      $dblink=db_connect("equipment");
                         $sql = 'SELECT
@@ -82,33 +82,73 @@
                            </form>
                         </div>';
 
+                  }else if (isset($_GET['edit_mode']) && $_GET['edit_mode'] == 'true') {
+                        $dblink=db_connect("equipment");
+                        $sql="Select `device_type_name`,`device_type_id` from `device_types` where `device_types`.`status_id` = '1'";
+                        $result=$dblink->query($sql) or
+                            die("<p>Something went wrong with $sql<br>".$dblink->error);
+                        $devices=array();
+                        $manufacturers=array();
+                        $statuses=array();
+                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                           $devices[$data['device_type_id']]=$data['device_type_name'];
+                        }
+                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
+                        $result=$dblink->query($sql) or 
+                           die("<p>Something went wrong with $sql<br>".$dblink->error);
+                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                           $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
+                        }
+                     $sql="Select `status_name`,`status_id` from `status`";
+                     $result=$dblink->query($sql) or 
+                        die("<p>Something went wrong with $sql<br>".$dblink->error);
+                     while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                        $statuses[$data['status_id']]=$data['status_name'];
+                     }
                   }
                   ?>
+                  <form method="post" action="">
+                    <div class="form-group">
+                        <label for="exampleDevice">Device:</label>
+                        <select class="form-control" name="deviceType">
+                            <?php
+                                foreach($devices as $key=>$value)
+                                    echo '<option value="'.$key.'">'.$value.'</option>';
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleManufacturer">Manufacturer:</label>
+                        <select class="form-control" name="manufacturer">
+                            <?php
+                                   foreach($manufacturers as $key=>$value)
+                                       echo '<option value="'.$key.'">'.$value.'</option>';
+                               ?>
+                       </select>
+                   </div>
+                   <div class="form-group">
+                        <label for="exampleStatus">Status:</label>
+                        <select class="form-control" name="status">
+                            <?php
+                                   foreach($statuses as $key=>$value)
+                                       echo '<option value="'.$key.'">'.$value.'</option>';
+                               ?>
+                       </select>
+                   </div>
+                   <div class="form-group">
+                        <label for="exampleSerial">Serial Number:</label>
+                        <input type="text" class="form-control" id="serialInput" name="serialnumber">
+                   </div>
+                        <button type="submit" class="btn btn-success" name="search" value="Search">Save</button>
+               </form>
                </div>
           </div>
       </section>
 </body>
 </html>
 <?php
-    if (isset($_POST['submit']))
+    if (isset($_POST['modify']))
     {
-        $device=$_POST['device'];
-        $manufacturer=$_POST['manufacturer'];
-        $serialNumber=trim($_POST['serialnumber']);
-
-        validateSerialNumber($prefix, $body, $serialNumber);
-
-        $sql="Select `device_id` from `devices` where `serial_number_body`='$body' and `serial_number_prefix`='$prefix'";
-        $rst=$dblink->query($sql) or
-             die("<p>Something went wrong with $sql<br>".$dblink->error);
-        if ($rst->num_rows<=0)//sn not previously found
-        {
-            $sql="Insert into `devices` (`device_type_id`,`manufacturer_id`, `serial_number_prefix`, `serial_number_body`) values ('$device','$manufacturer','$prefix','$body')";
-            $dblink->query($sql) or
-                 die("<p>Something went wrong with $sql<br>".$dblink->error);
-            redirect("index.php?msg=EquipmentAdded");
-        }
-        else
-            redirect("add.php?msg=DeviceExists");
+        redirect("view.php?item_id=" . $_GET['item_id'] . "&edit_mode=true");
     }
 ?>
