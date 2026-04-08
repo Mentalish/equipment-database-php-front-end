@@ -48,9 +48,7 @@
                <div class="row">
                   <?php
                   include("functions.php");
-                  if(!isset($_GET['edit_mode']) || $_GET['edit_mode'] == 'false')
-                  {
-                     $dblink=db_connect("equipment");
+                  $dblink=db_connect("equipment");
                         $sql = 'SELECT
                         d.device_id, 
                         m.manufacturer_name, 
@@ -67,6 +65,10 @@
                         $result=$dblink->query($sql) or
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         $data=$result->fetch_array(MYSQLI_ASSOC);
+
+                  if(!isset($_GET['edit_mode']) || $_GET['edit_mode'] == 'false')
+                  {
+                     
                         echo '<h4>Device Type:</h4>
                               <p>' . $data['device_type_name'] . '</p>
                               <h4>Manufacturer:</h4>
@@ -112,8 +114,13 @@
                         <label for="exampleDevice">Device:</label>
                         <select class="form-control" name="deviceType">
                             <?php
-                                foreach($devices as $key=>$value)
-                                    echo '<option value="'.$key.'">'.$value.'</option>';
+                              foreach($devices as $key=>$value) {
+                                 $selected="";
+                                 if($data['device_id'] == $key) {
+                                    $selected="selected";
+                                 } 
+                                 echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
+                              }
                             ?>
                         </select>
                     </div>
@@ -121,23 +128,33 @@
                         <label for="exampleManufacturer">Manufacturer:</label>
                         <select class="form-control" name="manufacturer">
                             <?php
-                                   foreach($manufacturers as $key=>$value)
-                                       echo '<option value="'.$key.'">'.$value.'</option>';
-                               ?>
+                              foreach($manufacturers as $key=>$value) {
+                                 $selected="";
+                                 if($data['device_id'] == $key) {
+                                     $selected="selected";
+                                 } 
+                                 echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
+                              }
+                           ?>
                        </select>
                    </div>
                    <div class="form-group">
                         <label for="exampleStatus">Status:</label>
                         <select class="form-control" name="status">
-                            <?php
-                                   foreach($statuses as $key=>$value)
-                                       echo '<option value="'.$key.'">'.$value.'</option>';
-                               ?>
+                        <?php
+                        foreach($devices as $key=>$value) {
+                           $selected="";
+                           if($data['device_id'] == $key) {
+                              $selected="selected";
+                           } 
+                           echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
+                        }
+                        ?>
                        </select>
                    </div>
                    <div class="form-group">
                         <label for="exampleSerial">Serial Number:</label>
-                        <input type="text" class="form-control" id="serialInput" name="serialnumber">
+                        <?php echo '<input type="text" class="form-control value="' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . ' id="serialInput" name="serialnumber">'; ?>
                    </div>
                         <button type="submit" class="btn btn-success" name="search" value="Search">Save</button>
                         <button type="submit" class="btn btn-primary" name="view" value="Search">View</button>
