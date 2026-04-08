@@ -146,7 +146,7 @@
                WHERE 1=1';
 
                     if($deviceType != 0) {
-                       $sql .= "AND d.device_type_id='$deviceType' AND dt.status_id = '1'";
+                       $sql .= " AND d.device_type_id='$deviceType' AND dt.status_id = '1'";
                     }else {
                        $sql .= " AND dt.status='1'";
                     }
