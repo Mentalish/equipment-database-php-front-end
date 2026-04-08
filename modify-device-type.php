@@ -116,7 +116,7 @@
        $status = $_POST['status'];
        if($deviceTypeName) 
        {
-          if(!preg_match('/^[A-Z][a-z\s]+$/', $deviceTypeName)) 
+          if(!preg_match('/^[a-z\s]+$/', $deviceTypeName)) 
           {
              redirect("modify-device-type.php?msg=deviceNameInvalid");
           }
