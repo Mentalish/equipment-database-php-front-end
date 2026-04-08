@@ -51,7 +51,6 @@
                     if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="EquipmentAdded")
                     {
                         echo '<div class="alert alert-success" role="alert">Equipment successfully added.</div>';
-                        
                     }
 
                     if(isset($_REQUEST['msg']) && $_REQUEST['msg']=="DeviceTypeAdded") 
@@ -63,9 +62,18 @@
                     {
                        echo '<div class="alert alert-success" role="alert">Manufacturer successfully added.</div>';
                     }
+
+                    if(isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerNameDuplicate") 
+                    {
+                       echo '<div class="alert alert-error" role="alert">Manufacturer name already exists.</div>';
+                    }
+                    if(isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerEdited") 
+                    {
+                       echo '<div class="alert alert-success" role="alert">Manufacturer edited succesfully.</div>';
+                    }
+
                     ?>
-                        
-                    <div class="col-md-4 col-sm-4">
+                     <div class="col-md-4 col-sm-4">
                          <div class="feature-thumb">
                               <h3>Search Equipment</h3>
                               <p>Click here to search the equipment database.</p>

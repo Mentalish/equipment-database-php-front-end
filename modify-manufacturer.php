@@ -131,7 +131,7 @@
             redirect("index.php?msg=ManufacturerEdited");
           }
           else {
-            
+            redirect("modify-manufacturer.php?msg=ManufacturerNameDuplicate");
           }
        } else 
        {
@@ -140,6 +140,4 @@
             die("<p>Something went wrong with $sql<br>".$dblink->error);
        redirect("index.php?msg=ManufacturerEdited");
        }
-    }else {
-    
     }
