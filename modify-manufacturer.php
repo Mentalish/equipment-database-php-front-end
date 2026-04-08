@@ -70,11 +70,11 @@
                             echo '<div class="alert alert-danger" role="alert">Manufacturer name is invalid.</div>';
                         }
 
-                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerExists")
+                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerDuplicate")
                         {
                             echo '<div class="alert alert-danger" role="alert">Manufacturer already exists in database!</div>';
                         }
-                     ?>
+                                            ?>
                   <form method="post" action="">
                     <div class="form-group">
                         <label for="exampleDevice">Manufacturers:</label>

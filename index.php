@@ -62,11 +62,6 @@
                     {
                        echo '<div class="alert alert-success" role="alert">Manufacturer successfully added.</div>';
                     }
-
-                    if(isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerNameDuplicate") 
-                    {
-                       echo '<div class="alert alert-error" role="alert">Manufacturer name already exists.</div>';
-                    }
                     if(isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerEdited") 
                     {
                        echo '<div class="alert alert-success" role="alert">Manufacturer edited succesfully.</div>';
