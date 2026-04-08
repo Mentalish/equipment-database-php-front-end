@@ -78,7 +78,7 @@
                   <form method="post" action="">
                     <div class="form-group">
                         <label for="exampleDevice">Manufacturers:</label>
-                        <select class="form-control" name="device">
+                        <select class="form-control" name="manufacturer">
                             <?php
                                 foreach($manufacturers as $key=>$value)
                                     echo '<option value="'.$key.'">'.$value.'</option>';
