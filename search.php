@@ -115,7 +115,7 @@
                </form>
 <?php
                 if(isset($_POST['item_id'])) {
-                  redirect("view.php?item_id=" . $_POST['item_id']);
+                  redirect("view.php?item_id=" . $_POST['item_id'] . "&edit_mode=false");
                 }
                 if (isset($_POST['search']))
                 {
