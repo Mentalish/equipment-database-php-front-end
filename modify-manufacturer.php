@@ -95,4 +95,3 @@
         else
             redirect("add-manufacturer.php?msg=ManufacturerExists");
     }
-?>
