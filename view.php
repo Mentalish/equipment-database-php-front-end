@@ -55,7 +55,9 @@
                         dt.device_type_name, 
                         d.serial_number_prefix, 
                         d.serial_number_body,
-                        s.status_name
+                        s.status_name,
+                        d.manufacturer_id,
+                        d.status_id
                         FROM devices AS d';
 
                         $sql .= ' JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
