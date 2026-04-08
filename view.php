@@ -130,7 +130,7 @@
                             <?php
                               foreach($manufacturers as $key=>$value) {
                                  $selected="";
-                                 if($data['device_id'] == $key) {
+                                 if($data['manufacturer_id'] == $key) {
                                      $selected="selected";
                                  } 
                                  echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
@@ -142,9 +142,9 @@
                         <label for="exampleStatus">Status:</label>
                         <select class="form-control" name="status">
                         <?php
-                        foreach($devices as $key=>$value) {
+                        foreach($statuses as $key=>$value) {
                            $selected="";
-                           if($data['device_id'] == $key) {
+                           if($data['status_id'] == $key) {
                               $selected="selected";
                            } 
                            echo '<option' . $selected . ' value="'.$key.'">'.$value.'</option>';
