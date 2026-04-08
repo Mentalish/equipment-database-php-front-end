@@ -156,7 +156,7 @@
                    </div>
                    <div class="form-group">
                         <label for="exampleSerial">Serial Number:</label>
-                        <?php echo '<input type="text" class="form-control value="' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . ' id="serialInput" name="serialnumber">'; ?>
+                        <?php echo '<input type="text" class="form-control" value="' . $data['serial_number_prefix'] . '-' . $data['serial_number_body'] . ' id="serialInput" name="serialnumber">'; ?>
                    </div>
                         <button type="submit" class="btn btn-success" name="search" value="Search">Save</button>
                         <button type="submit" class="btn btn-primary" name="view" value="Search">View</button>
