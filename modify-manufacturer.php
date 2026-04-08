@@ -47,7 +47,16 @@
       <section id="feature">
          <div class="container">
                <div class="row">
-                   <?php 
+                  <?php
+                        $manufacturers=array();
+                        $dblink=db_connect("equipment");
+                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
+                        $result=$dblink->query($sql) or 
+                           die("<p>Something went wrong with $sql<br>".$dblink->error);
+                        while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
+                           $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
+                        }
+
                         include("functions.php");
                         $dblink=db_connect("equipment");
                         if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerNameInvalid")
