@@ -47,7 +47,12 @@
       <section id="feature">
          <div class="container">
           <div class="row">
-                <?php 
+                     <?php
+                     if(!isset($_GET['page'])) {
+                        $page = 0;
+                     }else {
+                        $page = $_GET['page'];
+                     }
                      include("functions.php");
                      $dblink=db_connect("equipment");
                      $sql="Select `device_type_name`,`device_type_id` from `device_types` where `device_types`.`status_id` = '1'";
@@ -114,15 +119,23 @@
                         <input type="text" class="form-control" id="serialInput" name="serialnumber">
                    </div>
                         <button type="submit" class="btn btn-primary" name="search" value="Search">Search</button>
-                        <button type="submit" class="btn btn-warning" name="search" value="pagedown">&lt</button>
+                        <button type="submit" class="btn btn-warning" name="pagedown" value="pagedown">&lt</button>
                         
-                        <button type="submit" class="btn btn-warning" name="search" value="pageup">&gt</button>
+                        <button type="submit" class="btn btn-warning" name="pageup" value="pageup">&gt</button>
 
 
                </form>
 <?php
+                  if(isset($_POST['pagedown'])) {
+                     $page--;
+                     redirect("search.php?page=" . $page);
+                  }
+                  if(isset($_POST['pageup'])) {
+                     $page++;
+                     redirect("search.php?page=" . $page);
+                  }
                 if(isset($_POST['item_id'])) {
-                  redirect("view.php?item_id=" . $_POST['item_id'] . "&edit_mode=false");
+                   redirect("view.php?item_id=" . $_POST['item_id'] . "&edit_mode=false");
                 }
                 if (isset($_POST['search']))
                 {
