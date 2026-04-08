@@ -114,9 +114,9 @@
                         <input type="text" class="form-control" id="serialInput" name="serialnumber">
                    </div>
                         <button type="submit" class="btn btn-primary" name="search" value="Search">Search</button>
-                        <button type="submit" class="btn btn-warning" name="search" value="pagedown">&gt</button>
+                        <button type="submit" class="btn btn-warning" name="search" value="pagedown">&lt</button>
                         
-                        <button type="submit" class="btn btn-warning" name="search" value="pageup">&le</button>
+                        <button type="submit" class="btn btn-warning" name="search" value="pageup">&gt</button>
 
 
                </form>
