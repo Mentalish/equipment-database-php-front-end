@@ -50,14 +50,14 @@
                <div class="row">
                   <?php
                         include("functions.php");
-                        $manufacturers=array();
+                        $deviceTypes=array();
                         $statuses=array();
                         $dblink=db_connect("equipment");
-                        $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers`";
+                        $sql="Select `device_type_name`,`device_type_id` from `device_types`";
                         $result=$dblink->query($sql) or 
                            die("<p>Something went wrong with $sql<br>".$dblink->error);
                         while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
-                           $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
+                           $deviceTypes[$data['device_type_id']]=$data['device_type_name'];
                         }
 
                      $sql="Select `status_name`,`status_id` from `status`";
@@ -66,29 +66,29 @@
                      while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                         $statuses[$data['status_id']]=$data['status_name'];
                      }
-                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerNameInvalid")
+                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="deviceNameInvalid")
                         {
-                            echo '<div class="alert alert-danger" role="alert">Manufacturer name is invalid.</div>';
+                            echo '<div class="alert alert-danger" role="alert">device type name is invalid.</div>';
                         }
 
-                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerDuplicate")
+                        if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="deviceDuplicate")
                         {
-                            echo '<div class="alert alert-danger" role="alert">Manufacturer already exists in database!</div>';
+                            echo '<div class="alert alert-danger" role="alert">device type name already exists in database!</div>';
                         }
                                             ?>
                   <form method="post" action="">
                     <div class="form-group">
-                        <label for="exampleDevice">Manufacturers:</label>
-                        <select class="form-control" name="manufacturer">
+                        <label for="exampleDevice">Device Types:</label>
+                        <select class="form-control" name="device_type">
                             <?php
-                                foreach($manufacturers as $key=>$value)
+                                foreach($deviceTypes as $key=>$value)
                                     echo '<option value="'.$key.'">'.$value.'</option>';
                             ?>
                         </select>
                     </div>
                         <div class="form-group">
-                           <label for="exampleSerial">New Manufacturer Name:</label>
-                           <input type="text" class="form-control" id="serialInput" name="new_manufacturer">
+                           <label for="exampleSerial">New Device Type Name:</label>
+                           <input type="text" class="form-control" id="serialInput" name="new_device_type_name">
                        </div>
 
                         <div class="form-group">
@@ -111,32 +111,32 @@
 <?php
     if (isset($_POST['save']))
     {
-       $manufacturerName=$_POST['new_manufacturer'];
-       $manufacturer = $_POST['manufacturer'];
+       $deviceTypeName=$_POST['new_device_type_name'];
+       $deviceType = $_POST['device_type'];
        $status = $_POST['status'];
-       if($manufacturerName) 
+       if($deviceTypeName) 
        {
-          if(!preg_match('/^[A-Z][a-z\s]+$/', $manufacturerName)) 
+          if(!preg_match('/^[A-Z][a-z\s]+$/', $deviceTypeName)) 
           {
-             redirect("modify-manufacturer.php?msg=ManufacturerNameInvalid");
+             redirect("modify-device-type.php?msg=deviceNameInvalid");
           }
 
-          $sql="Select `manufacturer_id` from `manufacturers` where `manufacturer_name`='$manufacturerName' and `manufacturer_id`!='$manufacturer'";
+          $sql="Select `device_type_id` from `device_types` where `device_type_name`='$deviceTypeName' and `device_type_id`!='$deviceType'";
           $rst=$dblink->query($sql) or
                 die("<p>Something went wrong with $sql<br>".$dblink->error);
           if ($rst->num_rows<=0)//name not previously found
           {
-            $sql="UPDATE `manufacturers` SET `manufacturer_name`='$manufacturerName', `status_id`='$status' WHERE `manufacturer_id`='$manufacturer'";
+            $sql="UPDATE `device_types` SET `device_type_name`='$deviceTypeName', `status_id`='$status' WHERE `device_type_id`='$deviceType'";
             $dblink->query($sql) or
                  die("<p>Something went wrong with $sql<br>".$dblink->error);
-            redirect("index.php?msg=ManufacturerEdited");
+            redirect("index.php?msg=deviceTypeEdited");
           }
           else {
-            redirect("modify-manufacturer.php?msg=ManufacturerDuplicate");
+            redirect("modify-device-type.php?msg=deviceDuplicate");
           }
        } else 
        {
-       $sql="UPDATE `manufacturers` SET `status_id`='$status' WHERE `manufacturer_id`='$manufacturer'";
+       $sql="UPDATE `device_types` SET `status_id`='$status' WHERE `device_type_id`='$deviceType'";
        $dblink->query($sql) or
             die("<p>Something went wrong with $sql<br>".$dblink->error);
        redirect("index.php?msg=ManufacturerEdited");
