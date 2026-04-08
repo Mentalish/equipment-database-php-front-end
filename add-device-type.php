@@ -34,7 +34,7 @@
                          <li><a href="add.php" class="smoothScroll">Add Equipment</a></li>
                          <li><a href="add-device-type.php" class="smoothScroll">Add Device Type</a></li>
                          <li><a href="add-manufacturer.php" class="smoothScroll">Add Manufacturer</a></li>
-                         <li><a href="modify-manufacturer.php" class="smoothScroll">Modify Device Type</a></li>
+                         <li><a href="modify-device-type" class="smoothScroll">Modify Device Type</a></li>
                          <li><a href="modify-manufacturer.php" class="smoothScroll">Modify Manufacturer</a></li>
                     </ul>
                </div>
