@@ -128,6 +128,9 @@
 <?php
                   if(isset($_POST['pagedown'])) {
                      $page--;
+                     if($page < 0) {
+                        $page = 0;
+                     }
                      redirect("search.php?page=" . $page);
                   }
                   if(isset($_POST['pageup'])) {
@@ -181,8 +184,8 @@
                     if($status != 0) {
                        $sql .= " AND d.status_id='$status'";
                     }
-
-                    $sql .= " LIMIT 25 OFFSET 0";
+                    $offset = "25" * $_GET['page'];
+                    $sql .= " LIMIT 25 OFFSET '$offset'";
                     $result=$dblink->query($sql) or
                          die("<p>Something went wrong with $sql<br>".$dblink->error);
                         echo '<br><table class="table table-bordered">
