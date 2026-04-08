@@ -50,7 +50,8 @@
                   include("functions.php");
                   $dblink=db_connect("equipment");
                         $sql = 'SELECT
-                        d.device_id, 
+                        d.device_id,
+                        d.device_type_id, 
                         m.manufacturer_name, 
                         dt.device_type_name, 
                         d.serial_number_prefix, 
@@ -118,7 +119,7 @@
                             <?php
                               foreach($devices as $key=>$value) {
                                  $selected="";
-                                 if($data['device_id'] == $key) {
+                                 if($data['device_type_id'] == $key) {
                                     $selected="selected";
                                  } 
                                  echo '<option ' . $selected . ' value="'.$key.'">'.$value.'</option>';
