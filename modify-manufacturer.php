@@ -68,12 +68,23 @@
                             echo '<div class="alert alert-danger" role="alert">Manufacturer already exists in database!</div>';
                         }
                      ?>
+                  <form method="post" action="">
+                    <div class="form-group">
+                        <label for="exampleDevice">Manufacturers:</label>
+                        <select class="form-control" name="device">
+                            <?php
+                                foreach($manufacturers as $key=>$value)
+                                    echo '<option value="'.$key.'">'.$value.'</option>';
+                            ?>
+                        </select>
+                    </div>
+
                     <form method="post" action="">
                         <div class="form-group">
                            <label for="exampleSerial">New Manufacturer:</label>
                            <input type="text" class="form-control" id="serialInput" name="manufacturer">
                        </div>
-                           <button type="submit" class="btn btn-primary" name="submit" value="submit">Add Manufacturer</button>
+                           <button type="submit" class="btn btn-primary" name="submit" value="submit">New manufacturer name:</button>
                     </form>
                </div>
           </div>
