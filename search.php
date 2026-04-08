@@ -130,7 +130,6 @@
                     if($serialNumber) {
                         validateSerialNumber($prefix, $body, $serialNumber);
                     }
-               $hasPreviousWhere = false;
                     $sql = 'SELECT
                    d.device_id,
                    d.status_id,
@@ -143,36 +142,26 @@
 
                 $sql .= ' JOIN manufacturers AS m ON d.manufacturer_id = m.manufacturer_id
                JOIN device_types AS dt ON d.device_type_id = dt.device_type_id
-               JOIN status AS s ON d.status_id = s.status_id';
+               JOIN status AS s ON d.status_id = s.status_id
+               WHERE 1=1';
 
                     if($deviceType != 0) {
-                       $sql .= " WHERE d.device_type_id='$deviceType' AND dt.status_id = '1'";
-                       $hasPreviousWhere = true;
+                       $sql .= "AND d.device_type_id='$deviceType' AND dt.status_id = '1'";
                     }else {
-                       $sql .= " WHERE dt.status='1'";
+                       $sql .= " AND dt.status='1'";
                     }
 
-                    if($manufacturer != 0 && $hasPreviousWhere) {
+                    if($manufacturer != 0) {
                        $sql .= " AND d.manufacturer_id='$manufacturer' AND m.status_id = '1'";
-                    } else if($manufacturer != 0) {
-                       $sql .= " WHERE d.manufacturer_id='$manufacturer' AND m.status_id = '1'";
-                       $hasPreviousWhere = true;
                     } else {
-                       $sql .= " WHERE m.status='1'";
+                       $sql .= " AND m.status='1'";
                     }
 
-                    if($serialNumber && $hasPreviousWhere) {
+                    if($serialNumber) {
                        $sql .= " AND d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'";
-                    } else if($serialNumber){
-                       $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'" ; 
-                       $hasPreviousWhere = true;
-                    } 
-
-                    if($status != 0 && $hasPreviousWhere) {
+                    }
+                    if($status != 0) {
                        $sql .= " AND d.status_id='$status'";
-                    } else if($status != 0){
-                       $sql .= " WHERE d.status_id='$status'" ; 
-                       $hasPreviousWhere = true;
                     }
 
                     $sql .= " LIMIT 25 OFFSET 0";
