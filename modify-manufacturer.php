@@ -81,10 +81,10 @@
 
                     <form method="post" action="">
                         <div class="form-group">
-                           <label for="exampleSerial">New Manufacturer:</label>
+                           <label for="exampleSerial">New Manufacturer Name:</label>
                            <input type="text" class="form-control" id="serialInput" name="manufacturer">
                        </div>
-                           <button type="submit" class="btn btn-primary" name="submit" value="submit">New manufacturer name:</button>
+                           <button type="submit" class="btn btn-primary" name="save" value="submit">Save</button>
                     </form>
                </div>
           </div>
