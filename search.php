@@ -145,23 +145,22 @@
                JOIN device_types AS dt ON d.device_type_id = dt.device_type_id
                JOIN status AS s ON d.status_id = s.status_id';
 
-
                     if($deviceType != 0) {
-                       $sql .= " WHERE d.device_type_id='$deviceType'";
+                       $sql .= " WHERE d.device_type_id='$deviceType' AND d.status_id = '1'";
                        $hasPreviousWhere = true;
                     }
 
                     if($manufacturer != 0 && $hasPreviousWhere) {
-                       $sql .= " AND d.manufacturer_id='$manufacturer'";
+                       $sql .= " AND d.manufacturer_id='$manufacturer' AND d.status_id = '1'";
                     } else if($manufacturer != 0) {
-                       $sql .= " WHERE d.manufacturer_id='$manufacturer'";
+                       $sql .= " WHERE d.manufacturer_id='$manufacturer' AND d.status_id = '1'";
                        $hasPreviousWhere = true;
                     }
 
                     if($serialNumber && $hasPreviousWhere) {
-                       $sql .= " AND d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'";
+                       $sql .= " AND d.serial_number_body='$body' AND d.serial_number_prefix='$prefix' AND d.status_id = '1'";
                     } else if($serialNumber){
-                       $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_prefix='$prefix'" ; 
+                       $sql .= " WHERE d.serial_number_body='$body' AND d.serial_number_prefix='$prefix' AND d.status_id = '1'" ; 
                        $hasPreviousWhere = true;
                     }
 
