@@ -48,6 +48,7 @@
          <div class="container">
                <div class="row">
                   <?php
+                        include("functions.php");
                         $manufacturers=array();
                         $dblink=db_connect("equipment");
                         $sql="Select `manufacturer_name`,`manufacturer_id` from `manufacturers` where `manufacturers`.`status_id`='1'";
