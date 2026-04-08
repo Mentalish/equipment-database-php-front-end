@@ -140,6 +140,7 @@
                         <input type="text" class="form-control" id="serialInput" name="serialnumber">
                    </div>
                         <button type="submit" class="btn btn-success" name="search" value="Search">Save</button>
+                        <button type="submit" class="btn btn-primary" name="view" value="Search">View</button>
                </form>
                <?php  }?>
             </div>
@@ -151,5 +152,9 @@
     if (isset($_POST['modify']))
     {
         redirect("view.php?item_id=" . $_GET['item_id'] . "&edit_mode=true");
+    }
+    if (isset($_POST['view']))
+    {
+        redirect("view.php?item_id=" . $_GET['item_id'] . "&edit_mode=false");
     }
 ?>
