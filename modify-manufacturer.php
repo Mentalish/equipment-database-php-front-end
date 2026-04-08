@@ -57,8 +57,6 @@
                         while ($data=$result->fetch_array(MYSQLI_ASSOC)) {
                            $manufacturers[$data['manufacturer_id']]=$data['manufacturer_name'];
                         }
-
-                        include("functions.php");
                         $dblink=db_connect("equipment");
                         if (isset($_REQUEST['msg']) && $_REQUEST['msg']=="ManufacturerNameInvalid")
                         {
