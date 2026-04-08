@@ -87,9 +87,6 @@
                              <a href="#feature" class="btn btn-default smoothScroll">Discover more</a>
                          </div>
                     </div>
-
-                    
-
                </div>
           </div>
      </section>

@@ -114,6 +114,11 @@
                         <input type="text" class="form-control" id="serialInput" name="serialnumber">
                    </div>
                         <button type="submit" class="btn btn-primary" name="search" value="Search">Search</button>
+                        <button type="submit" class="btn btn-warning" name="search" value="pagedown">&gt</button>
+                        
+                        <button type="submit" class="btn btn-warning" name="search" value="pageup">&le</button>
+
+
                </form>
 <?php
                 if(isset($_POST['item_id'])) {
